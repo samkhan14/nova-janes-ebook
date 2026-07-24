@@ -70,20 +70,44 @@
 
     <section class="section section--ochre" id="books">
         <div class="site-container">
-            @foreach ($books as $book)
-                <x-site.book-feature
-                    :label="$book['label']"
-                    :title="$book['title']"
-                    :copy="$book['copy']"
-                    :image="$book['image']"
-                    :image-alt="$book['imageAlt']"
-                    :image-width="$book['imageWidth']"
-                    :image-height="$book['imageHeight']"
-                    :image-side="$book['imageSide']"
-                    button-href="#retail"
-                    button-label="Read More"
-                />
-            @endforeach
+            <x-site.book-feature
+                label="Book 1"
+                title="Benny & The Red Ear"
+                copy="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets."
+                image="frontend/assets/images/Group 1171276130.png"
+                image-alt="Benny & The Red Ear book cover"
+                :image-width="510"
+                :image-height="645"
+                image-side="left"
+                button-href="#retail"
+                button-label="Read More"
+            />
+
+            <x-site.book-feature
+                label="Book 2"
+                title="Benny Helps Mia See"
+                copy="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets."
+                image="frontend/assets/images/Group 1171276131.png"
+                image-alt="Benny Helps Mia See book cover"
+                :image-width="499"
+                :image-height="622"
+                image-side="right"
+                button-href="#retail"
+                button-label="Read More"
+            />
+
+            <x-site.book-feature
+                label="Book 3"
+                title="Benny and the Nighttime Brave"
+                copy="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets."
+                image="frontend/assets/images/Group 1171276105_result.webp"
+                image-alt="Benny and the Nighttime Brave book cover"
+                :image-width="499"
+                :image-height="622"
+                image-side="left"
+                button-href="#retail"
+                button-label="Read More"
+            />
         </div>
     </section>
 
@@ -115,13 +139,26 @@
             </div>
 
             <div class="standards__grid">
-                @foreach ($standards as $standard)
-                    <article class="standard-card">
-                        <h3>{{ $standard['title'] }}</h3>
-                        <p>{{ $standard['copy'] }}</p>
-                        <span class="standard-card__page">- Page no {{ $standard['page'] }}</span>
-                    </article>
-                @endforeach
+                <article class="standard-card">
+                    <h3>BOOK 01 Lorem Ipsum is simply dummy</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.</p>
+                    <span class="standard-card__page">- Page no 05</span>
+                </article>
+                <article class="standard-card">
+                    <h3>BOOK 01 Lorem Ipsum is simply dummy</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.</p>
+                    <span class="standard-card__page">- Page no 05</span>
+                </article>
+                <article class="standard-card">
+                    <h3>BOOK 01 Lorem Ipsum is simply dummy</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.</p>
+                    <span class="standard-card__page">- Page no 05</span>
+                </article>
+                <article class="standard-card">
+                    <h3>BOOK 01 Lorem Ipsum is simply dummy</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.</p>
+                    <span class="standard-card__page">- Page no 05</span>
+                </article>
             </div>
 
             <div class="standards__cta">
@@ -172,6 +209,7 @@
         </div>
     </section>
 
+    {{-- Video Trailers section hidden for now
     <section class="section section--white" id="trailers">
         <div class="site-container">
             <x-site.section-heading title="Video Trailers" />
@@ -218,53 +256,102 @@
             </div>
         </div>
     </section>
+    --}}
 
     <section class="section section--white" id="testimonials">
         <div class="site-container">
             <div class="testimonials__heading-wrap">
                 <img
-                    class="testimonials__pet"
-                    src="{{ asset('frontend/assets/images/Pebbles 3_result.webp') }}"
+                    class="testimonials__deco testimonials__deco--yarn"
+                    src="{{ asset('frontend/assets/images/testimonials-yarn.png') }}"
                     alt=""
-                    width="370"
-                    height="375"
+                    width="160"
+                    height="140"
                     loading="lazy"
                     aria-hidden="true"
                 >
-                <div class="testimonials__titles">
-                    <span class="eyebrow">Testimonials</span>
-                    <h2 class="section-heading">What Benny's Buddies Say</h2>
-                </div>
+                <h2 class="section-heading testimonials__title">What Benny's Buddies Say</h2>
                 <img
-                    class="testimonials__pet testimonials__pet--flip"
-                    src="{{ asset('frontend/assets/images/Pebbles 3_result.webp') }}"
+                    class="testimonials__deco testimonials__deco--glasses"
+                    src="{{ asset('frontend/assets/images/testimonials-glasses.png') }}"
                     alt=""
-                    width="370"
-                    height="375"
+                    width="120"
+                    height="80"
                     loading="lazy"
                     aria-hidden="true"
                 >
             </div>
 
-            <div class="testimonials__feature">
-                <img
-                    src="{{ asset('frontend/assets/images/Mask group_result.webp') }}"
-                    alt="Family reading moment with Benny"
-                    width="1030"
-                    height="525"
-                    loading="lazy"
+            <div class="testimonials__video" data-testimonials-video>
+                <video
+                    class="testimonials__video-el"
+                    poster="{{ asset('frontend/assets/images/Mask group_result.webp') }}"
+                    playsinline
+                    preload="metadata"
+                    controlsList="nodownload"
                 >
+                    <source
+                        src="{{ asset('frontend/assets/videos/testimonials.mp4') }}"
+                        type="video/mp4"
+                    >
+                </video>
+                <button class="testimonials__play" type="button" aria-label="Play video">
+                    <span class="testimonials__play-ring testimonials__play-ring--outer" aria-hidden="true"></span>
+                    <span class="testimonials__play-ring testimonials__play-ring--mid" aria-hidden="true"></span>
+                    <span class="testimonials__play-ring testimonials__play-ring--inner" aria-hidden="true"></span>
+                    <span class="testimonials__play-btn" aria-hidden="true"></span>
+                </button>
             </div>
 
-            <div class="testimonials__grid">
-                @foreach ($testimonials as $testimonial)
+            <div class="testimonials__slider" data-testimonials-slider>
+                <div class="testimonials__slide">
                     <x-site.testimonial
-                        :name="$testimonial['name']"
-                        :headline="$testimonial['headline']"
-                        :quote="$testimonial['quote']"
-                        :avatar="$testimonial['avatar']"
+                        name="Lorem Ipsum"
+                        headline="I Realy Appreciate!!"
+                        quote="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                        avatar="frontend/assets/images/Mask group (1)_result.webp"
                     />
-                @endforeach
+                </div>
+                <div class="testimonials__slide">
+                    <x-site.testimonial
+                        name="Lorem Ipsum"
+                        headline="Very Impressive"
+                        quote="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                        avatar="frontend/assets/images/Mask group (2)_result.webp"
+                    />
+                </div>
+                <div class="testimonials__slide">
+                    <x-site.testimonial
+                        name="Lorem Ipsum"
+                        headline="Amazing!!"
+                        quote="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                        avatar="frontend/assets/images/Mask group (1)_result.webp"
+                    />
+                </div>
+                <div class="testimonials__slide">
+                    <x-site.testimonial
+                        name="Lorem Ipsum"
+                        headline="I Realy Appreciate!!"
+                        quote="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                        avatar="frontend/assets/images/Mask group (2)_result.webp"
+                    />
+                </div>
+                <div class="testimonials__slide">
+                    <x-site.testimonial
+                        name="Lorem Ipsum"
+                        headline="Very Impressive"
+                        quote="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                        avatar="frontend/assets/images/Mask group (1)_result.webp"
+                    />
+                </div>
+                <div class="testimonials__slide">
+                    <x-site.testimonial
+                        name="Lorem Ipsum"
+                        headline="Amazing!!"
+                        quote="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                        avatar="frontend/assets/images/Mask group (2)_result.webp"
+                    />
+                </div>
             </div>
         </div>
     </section>
