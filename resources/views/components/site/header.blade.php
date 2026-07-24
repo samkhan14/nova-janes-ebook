@@ -4,8 +4,8 @@
             <img
                 src="{{ asset('frontend/assets/images/Jane Mansons_result.webp') }}"
                 alt="Jane Mansons"
-                width="140"
-                height="70"
+                width="200"
+                height="120"
             >
         </a>
 
@@ -25,8 +25,8 @@
             <a href="#testimonials">Testimonial</a>
             <a href="#standards">Gallery</a>
             <a href="#trailers">Video Trailers</a>
-            <a href="#contact">Contact Us</a>
-            <x-site.button href="#contact" variant="dark" class="site-nav__cta">Contact Us</x-site.button>
         </nav>
+
+        <x-site.button href="#contact" variant="dark" class="site-nav__cta">Contact Us</x-site.button>
     </div>
 </header>

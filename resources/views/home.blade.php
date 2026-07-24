@@ -31,18 +31,27 @@
         <div class="site-container author__grid">
             <div class="author__content">
                 <span class="eyebrow">About the Author</span>
-                <h2 class="author__title">Jane Manson</h2>
+                <h2 class="author__title">Jane Mansons</h2>
                 <p class="author__copy">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a type specimen book.
+                    has been the industry's standard dummy text ever since 1966, when designers at Letraset
+                    and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero
+                    translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has
+                    survived not only many decades, but also the leap into electronic typesetting, remaining
+                    essentially unchanged.
                 </p>
                 <div class="author__actions">
                     <x-site.button href="#contact" variant="dark">Follow On</x-site.button>
                     <div class="author__social" aria-label="Social links">
-                        <a href="#" aria-label="Instagram"><span>IG</span></a>
-                        <a href="#" aria-label="Facebook"><span>FB</span></a>
-                        <a href="#" aria-label="Website"><span>WWW</span></a>
+                        <a href="#" aria-label="Instagram">
+                            <img src="{{ asset('frontend/assets/images/s1.png') }}" alt="" width="32" height="32">
+                        </a>
+                        <a href="#" aria-label="Facebook" class="author__social-link author__social-link--facebook">
+                            <img src="{{ asset('frontend/assets/images/s2.png') }}" alt="" width="24" height="24">
+                        </a>
+                        <a href="#" aria-label="Threads">
+                            <img src="{{ asset('frontend/assets/images/s3.png') }}" alt="" width="32" height="32">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -103,14 +112,6 @@
             <div class="standards__heading">
                 <span class="eyebrow">The Book</span>
                 <h2 class="section-heading">Stanzas</h2>
-            </div>
-
-            <div class="section-tabs" role="tablist" aria-label="Book stanzas">
-                <button class="section-tabs__item is-active" type="button">Book 01</button>
-                <span aria-hidden="true">|</span>
-                <button class="section-tabs__item" type="button">Book 02</button>
-                <span aria-hidden="true">|</span>
-                <button class="section-tabs__item" type="button">Book 03</button>
             </div>
 
             <div class="standards__grid">
@@ -232,7 +233,7 @@
                 >
                 <div class="testimonials__titles">
                     <span class="eyebrow">Testimonials</span>
-                    <h2 class="section-heading">What People Say</h2>
+                    <h2 class="section-heading">What Benny's Buddies Say</h2>
                 </div>
                 <img
                     class="testimonials__pet testimonials__pet--flip"

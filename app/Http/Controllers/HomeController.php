@@ -15,7 +15,7 @@ class HomeController extends Controller
                 [
                     'label' => 'Book 1',
                     'title' => 'Benny & The Red Ear',
-                    'copy' => 'A warm story about kindness, belonging, and the courage it takes to be yourself.',
+                    'copy' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
                     'image' => 'frontend/assets/images/Book Cover Mockup on Isolated White Background (3) 1_result.webp',
                     'imageAlt' => 'Benny & The Red Ear book cover',
                     'imageWidth' => 391,
@@ -25,7 +25,7 @@ class HomeController extends Controller
                 [
                     'label' => 'Book 2',
                     'title' => 'Benny Helps Mia See',
-                    'copy' => 'Friendship blooms as Benny helps Mia find confidence, connection, and a brighter day.',
+                    'copy' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
                     'image' => 'frontend/assets/images/Book Cover Mockup on Isolated White Background (2) 1_result.webp',
                     'imageAlt' => 'Benny Helps Mia See book cover',
                     'imageWidth' => 373,
@@ -35,7 +35,7 @@ class HomeController extends Controller
                 [
                     'label' => 'Book 3',
                     'title' => 'Benny and the Nighttime Brave',
-                    'copy' => 'When night feels big and scary, Benny reminds little hearts that bravery can start soft and small.',
+                    'copy' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
                     'image' => 'frontend/assets/images/Group 1171276105_result.webp',
                     'imageAlt' => 'Benny and the Nighttime Brave book cover',
                     'imageWidth' => 499,

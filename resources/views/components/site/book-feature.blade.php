@@ -16,20 +16,53 @@
 @endphp
 
 <article @class(['book-feature', 'book-feature--image-right' => $isImageRight])>
-    <div class="book-feature__image">
-        <img
-            src="{{ asset($image) }}"
-            alt="{{ $imageAlt }}"
-            width="{{ $imageWidth }}"
-            height="{{ $imageHeight }}"
-            loading="lazy"
-        >
-    </div>
+    <div class="row align-items-start book-feature__row g-3 g-md-4">
+        @if ($isImageRight)
+            <div class="col-12 col-md-3" aria-hidden="true"></div>
 
-    <div class="book-feature__content">
-        <span class="book-feature__label">{{ $label }}</span>
-        <h3 class="book-feature__title">{{ $title }}</h3>
-        <p class="book-feature__copy">{{ $copy }}</p>
-        <x-site.button :href="$buttonHref" variant="dark">{{ $buttonLabel }}</x-site.button>
+            <div class="col-12 col-md-6">
+                <div class="book-feature__content">
+                    <span class="book-feature__label">{{ $label }}</span>
+                    <h3 class="book-feature__title">{{ $title }}</h3>
+                    <p class="book-feature__copy">{{ $copy }}</p>
+                    <x-site.button :href="$buttonHref" variant="dark">{{ $buttonLabel }}</x-site.button>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3">
+                <div class="book-feature__image">
+                    <img
+                        src="{{ asset($image) }}"
+                        alt="{{ $imageAlt }}"
+                        width="{{ $imageWidth }}"
+                        height="{{ $imageHeight }}"
+                        loading="lazy"
+                    >
+                </div>
+            </div>
+        @else
+            <div class="col-12 col-md-3">
+                <div class="book-feature__image">
+                    <img
+                        src="{{ asset($image) }}"
+                        alt="{{ $imageAlt }}"
+                        width="{{ $imageWidth }}"
+                        height="{{ $imageHeight }}"
+                        loading="lazy"
+                    >
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="book-feature__content">
+                    <span class="book-feature__label">{{ $label }}</span>
+                    <h3 class="book-feature__title">{{ $title }}</h3>
+                    <p class="book-feature__copy">{{ $copy }}</p>
+                    <x-site.button :href="$buttonHref" variant="dark">{{ $buttonLabel }}</x-site.button>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3" aria-hidden="true"></div>
+        @endif
     </div>
 </article>
