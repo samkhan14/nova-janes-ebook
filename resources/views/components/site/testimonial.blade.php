@@ -1,6 +1,6 @@
 @props([
     'name',
-    'role' => null,
+    'headline',
     'quote',
     'avatar',
     'avatarAlt' => null,
@@ -16,12 +16,8 @@
         loading="lazy"
     >
 
-    <h3 class="testimonial-card__name">{{ $name }}</h3>
-
-    @if ($role)
-        <p class="small text-muted mb-2">{{ $role }}</p>
-    @endif
-
+    <p class="testimonial-card__name">{{ $name }}</p>
+    <h3 class="testimonial-card__headline">{{ $headline }}</h3>
     <p class="testimonial-card__quote">{{ $quote }}</p>
     <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
 </article>

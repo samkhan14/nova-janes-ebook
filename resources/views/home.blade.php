@@ -11,8 +11,8 @@
                 <h1 class="hero__title">A Story About</h1>
                 <p class="hero__subtitle">Connection, Friendship and the Power of Love</p>
                 <div class="hero__actions">
-                    <x-site.button href="#about" variant="dark">Shop Now</x-site.button>
-                    <x-site.button href="#trailers" variant="outline">Watch Video</x-site.button>
+                    <x-site.button href="#retail" variant="dark">Order Now</x-site.button>
+                    <x-site.button href="#about" variant="outline">Read More</x-site.button>
                 </div>
             </div>
 
@@ -31,13 +31,20 @@
         <div class="site-container author__grid">
             <div class="author__content">
                 <span class="eyebrow">About the Author</span>
-                <h2 class="author__title">Jane Mansons</h2>
+                <h2 class="author__title">Jane Manson</h2>
                 <p class="author__copy">
-                    Jane Mansons writes heartfelt children’s stories that celebrate kindness, courage,
-                    and the little differences that make every child shine. Through Benny and friends,
-                    her books invite families into warm moments of connection and love.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                    has been the industry's standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
-                <x-site.button href="#contact" variant="dark">Read More</x-site.button>
+                <div class="author__actions">
+                    <x-site.button href="#contact" variant="dark">Follow On</x-site.button>
+                    <div class="author__social" aria-label="Social links">
+                        <a href="#" aria-label="Instagram"><span>IG</span></a>
+                        <a href="#" aria-label="Facebook"><span>FB</span></a>
+                        <a href="#" aria-label="Website"><span>WWW</span></a>
+                    </div>
+                </div>
             </div>
 
             <div class="author__media">
@@ -93,13 +100,25 @@
         >
 
         <div class="site-container">
-            <x-site.section-heading title="The Book Stanzas" />
+            <div class="standards__heading">
+                <span class="eyebrow">The Book</span>
+                <h2 class="section-heading">Stanzas</h2>
+            </div>
+
+            <div class="section-tabs" role="tablist" aria-label="Book stanzas">
+                <button class="section-tabs__item is-active" type="button">Book 01</button>
+                <span aria-hidden="true">|</span>
+                <button class="section-tabs__item" type="button">Book 02</button>
+                <span aria-hidden="true">|</span>
+                <button class="section-tabs__item" type="button">Book 03</button>
+            </div>
 
             <div class="standards__grid">
                 @foreach ($standards as $standard)
                     <article class="standard-card">
                         <h3>{{ $standard['title'] }}</h3>
                         <p>{{ $standard['copy'] }}</p>
+                        <span class="standard-card__page">- Page no {{ $standard['page'] }}</span>
                     </article>
                 @endforeach
             </div>
@@ -124,9 +143,12 @@
 
             <div class="retail__content">
                 <h2 class="retail__title">Available on Amazon and Barnes &amp; Noble</h2>
-                <p class="mb-4">Find the Benny series wherever you love to shop for children’s books.</p>
+                <p class="retail__copy">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                    has been the industry's standard dummy text ever since the 1500s.
+                </p>
                 <div class="retail__logos">
-                    <a href="#" aria-label="Available at Amazon">
+                    <a class="retail__logo-btn" href="#" aria-label="Available at Amazon">
                         <img
                             src="{{ asset('frontend/assets/images/Group 1171276127_result.webp') }}"
                             alt="Available at Amazon"
@@ -135,7 +157,7 @@
                             loading="lazy"
                         >
                     </a>
-                    <a href="#" aria-label="Barnes & Noble">
+                    <a class="retail__logo-btn" href="#" aria-label="Barnes & Noble">
                         <img
                             src="{{ asset('frontend/assets/images/Group 1171276115_result.webp') }}"
                             alt="Barnes & Noble"
@@ -153,17 +175,45 @@
         <div class="site-container">
             <x-site.section-heading title="Video Trailers" />
 
-            <div class="trailers__player">
-                <img
-                    src="{{ asset('frontend/assets/images/Mask group_result.webp') }}"
-                    alt="Benny Helps Mia See trailer preview"
-                    width="1030"
-                    height="525"
-                    loading="lazy"
-                >
-                <button class="trailers__play" type="button" aria-label="Play Benny Helps Mia See trailer">
-                    <span class="trailers__play-icon" aria-hidden="true"></span>
-                </button>
+            <div class="section-tabs" role="tablist" aria-label="Video trailers">
+                <button class="section-tabs__item is-active" type="button">Book 01</button>
+                <span aria-hidden="true">|</span>
+                <button class="section-tabs__item" type="button">Book 02</button>
+                <span aria-hidden="true">|</span>
+                <button class="section-tabs__item" type="button">Book 03</button>
+            </div>
+
+            <div class="trailers__stage">
+                <div class="trailers__side trailers__side--left" aria-hidden="true">
+                    <img src="{{ asset('frontend/assets/images/Mask group_result.webp') }}" alt="" loading="lazy">
+                </div>
+
+                <div class="trailers__player">
+                    <img
+                        src="{{ asset('frontend/assets/images/Mask group_result.webp') }}"
+                        alt="Benny Helps Mia See trailer preview"
+                        width="1030"
+                        height="525"
+                        loading="lazy"
+                    >
+                    <div class="trailers__overlay-title">
+                        <span>Benney Helps</span>
+                        <span>Mia See</span>
+                    </div>
+                    <button class="trailers__play" type="button" aria-label="Play Benny Helps Mia See trailer">
+                        <span class="trailers__play-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <div class="trailers__side trailers__side--right" aria-hidden="true">
+                    <img src="{{ asset('frontend/assets/images/Mask group_result.webp') }}" alt="" loading="lazy">
+                </div>
+            </div>
+
+            <div class="trailers__dots" aria-hidden="true">
+                <span></span>
+                <span class="is-active"></span>
+                <span></span>
             </div>
         </div>
     </section>
@@ -180,7 +230,10 @@
                     loading="lazy"
                     aria-hidden="true"
                 >
-                <x-site.section-heading title="What People Say" />
+                <div class="testimonials__titles">
+                    <span class="eyebrow">Testimonials</span>
+                    <h2 class="section-heading">What People Say</h2>
+                </div>
                 <img
                     class="testimonials__pet testimonials__pet--flip"
                     src="{{ asset('frontend/assets/images/Pebbles 3_result.webp') }}"
@@ -202,16 +255,14 @@
                 >
             </div>
 
-            <div class="row g-4">
+            <div class="testimonials__grid">
                 @foreach ($testimonials as $testimonial)
-                    <div class="col-md-4">
-                        <x-site.testimonial
-                            :name="$testimonial['name']"
-                            :role="$testimonial['role']"
-                            :quote="$testimonial['quote']"
-                            :avatar="$testimonial['avatar']"
-                        />
-                    </div>
+                    <x-site.testimonial
+                        :name="$testimonial['name']"
+                        :headline="$testimonial['headline']"
+                        :quote="$testimonial['quote']"
+                        :avatar="$testimonial['avatar']"
+                    />
                 @endforeach
             </div>
         </div>
@@ -219,7 +270,7 @@
 
     <section class="section section--ochre" id="contact">
         <div class="site-container contact__grid">
-            <div class="contact__media text-center text-md-start">
+            <div class="contact__media">
                 <img
                     src="{{ asset('frontend/assets/images/Group 1171276117_result.webp') }}"
                     alt="Shop the Benny book collection"
@@ -227,8 +278,8 @@
                     height="641"
                     loading="lazy"
                 >
-                <div class="mt-4">
-                    <x-site.button href="#retail" variant="dark">Shop Now</x-site.button>
+                <div class="contact__order">
+                    <x-site.button href="#retail" variant="dark">Order Now</x-site.button>
                 </div>
             </div>
 
@@ -240,7 +291,7 @@
 
         <footer class="site-footer">
             <div class="site-container">
-                <p class="mb-0">Copyrights © All Rights Reserved {{ date('Y') }} | Jane Mansons</p>
+                <p class="mb-0">©Copyrights All Rights Reserved {{ date('Y') }} | Jane Mansons</p>
             </div>
         </footer>
     </section>

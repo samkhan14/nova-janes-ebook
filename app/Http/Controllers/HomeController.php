@@ -13,7 +13,7 @@ class HomeController extends Controller
         return view('home', [
             'books' => [
                 [
-                    'label' => 'Book 01',
+                    'label' => 'Book 1',
                     'title' => 'Benny & The Red Ear',
                     'copy' => 'A warm story about kindness, belonging, and the courage it takes to be yourself.',
                     'image' => 'frontend/assets/images/Book Cover Mockup on Isolated White Background (3) 1_result.webp',
@@ -23,7 +23,7 @@ class HomeController extends Controller
                     'imageSide' => 'left',
                 ],
                 [
-                    'label' => 'Book 02',
+                    'label' => 'Book 2',
                     'title' => 'Benny Helps Mia See',
                     'copy' => 'Friendship blooms as Benny helps Mia find confidence, connection, and a brighter day.',
                     'image' => 'frontend/assets/images/Book Cover Mockup on Isolated White Background (2) 1_result.webp',
@@ -33,7 +33,7 @@ class HomeController extends Controller
                     'imageSide' => 'right',
                 ],
                 [
-                    'label' => 'Book 03',
+                    'label' => 'Book 3',
                     'title' => 'Benny and the Nighttime Brave',
                     'copy' => 'When night feels big and scary, Benny reminds little hearts that bravery can start soft and small.',
                     'image' => 'frontend/assets/images/Group 1171276105_result.webp',
@@ -45,38 +45,42 @@ class HomeController extends Controller
             ],
             'standards' => [
                 [
-                    'title' => 'Stanza I: Love learns to fly',
-                    'copy' => 'Gentle pages that help children notice feelings, friendship, and everyday courage.',
+                    'title' => 'BOOK 01 Lorem Ipsum is simply dummy',
+                    'copy' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.',
+                    'page' => '05',
                 ],
                 [
-                    'title' => 'Stanza II: Differences shine',
-                    'copy' => 'Stories that celebrate uniqueness and teach empathy through playful adventure.',
+                    'title' => 'BOOK 01 Lorem Ipsum is simply dummy',
+                    'copy' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.',
+                    'page' => '05',
                 ],
                 [
-                    'title' => 'Stanza III: Brave little nights',
-                    'copy' => 'Comforting moments for bedtime fears, soft reassurance, and hopeful endings.',
+                    'title' => 'BOOK 01 Lorem Ipsum is simply dummy',
+                    'copy' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.',
+                    'page' => '05',
                 ],
                 [
-                    'title' => 'Stanza IV: Friends forever',
-                    'copy' => 'Warm characters that invite families to read together and talk about kindness.',
+                    'title' => 'BOOK 01 Lorem Ipsum is simply dummy',
+                    'copy' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.',
+                    'page' => '05',
                 ],
             ],
             'testimonials' => [
                 [
-                    'name' => 'Sarah Mitchell',
-                    'role' => 'Happy Parent',
+                    'name' => 'Lorem Ipsum',
+                    'headline' => 'I Realy Appreciate!!',
                     'quote' => 'These books helped my child talk about feelings with so much confidence and joy.',
                     'avatar' => 'frontend/assets/images/Mask group (1)_result.webp',
                 ],
                 [
-                    'name' => 'Daniel Cole',
-                    'role' => 'Teacher',
+                    'name' => 'Lorem Ipsum',
+                    'headline' => 'Very Impressive',
                     'quote' => 'Perfect classroom read-alouds. The illustrations and messages land beautifully every time.',
                     'avatar' => 'frontend/assets/images/Mask group (2)_result.webp',
                 ],
                 [
-                    'name' => 'Priya Nair',
-                    'role' => 'Book Lover',
+                    'name' => 'Lorem Ipsum',
+                    'headline' => 'Amazing!!',
                     'quote' => 'Benny feels like a friend. We return to these stories again and again at bedtime.',
                     'avatar' => 'frontend/assets/images/Mask group (1)_result.webp',
                 ],

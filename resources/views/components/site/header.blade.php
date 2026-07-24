@@ -21,12 +21,12 @@
         </button>
 
         <nav id="site-nav" class="site-nav" data-site-nav aria-label="Primary">
-            <a href="#about">Meet the Author</a>
-            <a href="#books">The Books</a>
+            <a href="#about">About the Author</a>
+            <a href="#testimonials">Testimonial</a>
             <a href="#standards">Gallery</a>
             <a href="#trailers">Video Trailers</a>
             <a href="#contact">Contact Us</a>
-            <x-site.button href="#retail" variant="dark" class="ms-lg-2">Order Now</x-site.button>
+            <x-site.button href="#contact" variant="dark" class="site-nav__cta">Contact Us</x-site.button>
         </nav>
     </div>
 </header>
