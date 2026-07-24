@@ -1294,6 +1294,93 @@ section#contact {
     }
 }
 
+/* =========================================================
+   CUSTOM RESPONSIVE OVERRIDES
+   Apni nayi mobile / tablet CSS yahan paste karo.
+   ========================================================= */
+
+/* MOBILE — phones only (< 768px)
+   Paste line: is block ke andar, closing `}` se pehle
+*/
+@media (max-width: 767.98px) {
+    h1.hero__title {
+        font-size: 24px;
+    }
+
+    .hero__subtitle {
+        font-size: 32px;
+    }
+
+    .author__content .eyebrow {
+        font-size: 20px;
+    }
+
+    .author__title {
+        font-size: 35px;
+    }
+
+    .author__copy {
+        font-size: 16px;
+    }
+
+    .author__actions {
+        justify-content: space-around;
+    }
+
+    .author__media {
+        margin-top: 40px;
+    }
+
+    .author__media img {
+        width: 100%;
+    }
+
+    .book-feature__title {
+        font-size: 40px;
+    }
+
+    .eyebrow {
+        font-size: 23px;
+    }
+
+    .section-heading {
+        font-size: 51px;
+    }
+
+    .standard-card h3 {
+        font-size: 18px;
+    }
+
+    .retail__title {
+        font-size: 36px;
+    }
+
+    p.retail__copy {
+        font-size: 18px;
+    }
+
+    .retail__logo-btn img {
+        width: 100%;
+    }
+
+    .contact__content {
+        margin-top: 60px;
+    }
+
+    footer.site-footer {
+        font-size: 18px;
+    }
+}
+
+/* TABLET — tablets only (768px – 991px)
+   Paste line: is block ke andar, closing `}` se pehle
+*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* example:
+    .hero__title { font-size: 48px; }
+    */
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
