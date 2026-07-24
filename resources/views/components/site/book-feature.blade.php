@@ -15,7 +15,10 @@
     $isImageRight = $imageSide === 'right';
 @endphp
 
-<article @class(['book-feature', 'book-feature--image-right' => $isImageRight])>
+<article
+    @class(['book-feature', 'book-feature--image-right' => $isImageRight])
+    data-reveal="{{ $isImageRight ? 'fade-left' : 'fade-right' }}"
+>
     <div class="row align-items-start book-feature__row g-3 g-md-4">
         @if ($isImageRight)
             <div class="col-12 col-md-3" aria-hidden="true"></div>

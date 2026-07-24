@@ -7,7 +7,7 @@
         <x-site.header />
 
         <div class="site-container hero__grid">
-            <div class="hero__content">
+            <div class="hero__content" data-reveal="fade-up">
                 <h1 class="hero__title">A Story About</h1>
                 <p class="hero__subtitle">Connection, Friendship and the Power of Love</p>
                 <div class="hero__actions">
@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="hero__books">
+            <div class="hero__books" data-reveal="fade-up" style="--reveal-delay: 0.15s">
                 <img
                     src="{{ asset('frontend/assets/images/Group 1171276117_result.webp') }}"
                     alt="Benny book series covers"
@@ -29,7 +29,7 @@
 
     <section class="section section--white" id="about">
         <div class="site-container author__grid">
-            <div class="author__content">
+            <div class="author__content" data-reveal="fade-right">
                 <span class="eyebrow">About the Author</span>
                 <h2 class="author__title">Jane Mansons</h2>
                 <p class="author__copy">
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="author__media">
+            <div class="author__media" data-reveal="fade-left" style="--reveal-delay: 0.12s">
                 <img
                     src="{{ asset('frontend/assets/images/Group 1171276125_result.webp') }}"
                     alt="Author Jane Mansons with Benny the teddy bear"
@@ -133,35 +133,35 @@
         >
 
         <div class="site-container">
-            <div class="standards__heading">
+            <div class="standards__heading" data-reveal="fade-up">
                 <span class="eyebrow">The Book</span>
                 <h2 class="section-heading">Stanzas</h2>
             </div>
 
             <div class="standards__grid">
-                <article class="standard-card">
+                <article class="standard-card" data-reveal="fade-up" style="--reveal-delay: 0.05s">
                     <h3>BOOK 01 Lorem Ipsum is simply dummy</h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.</p>
                     <span class="standard-card__page">- Page no 05</span>
                 </article>
-                <article class="standard-card">
+                <article class="standard-card" data-reveal="fade-up" style="--reveal-delay: 0.12s">
                     <h3>BOOK 01 Lorem Ipsum is simply dummy</h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.</p>
                     <span class="standard-card__page">- Page no 05</span>
                 </article>
-                <article class="standard-card">
+                <article class="standard-card" data-reveal="fade-up" style="--reveal-delay: 0.18s">
                     <h3>BOOK 01 Lorem Ipsum is simply dummy</h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.</p>
                     <span class="standard-card__page">- Page no 05</span>
                 </article>
-                <article class="standard-card">
+                <article class="standard-card" data-reveal="fade-up" style="--reveal-delay: 0.24s">
                     <h3>BOOK 01 Lorem Ipsum is simply dummy</h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard.</p>
                     <span class="standard-card__page">- Page no 05</span>
                 </article>
             </div>
 
-            <div class="standards__cta">
+            <div class="standards__cta" data-reveal="fade-up" style="--reveal-delay: 0.1s">
                 <x-site.button href="#books" variant="dark">Read More</x-site.button>
             </div>
         </div>
@@ -169,7 +169,7 @@
 
     <section class="section section--ochre section--banner" id="retail">
         <div class="site-container retail__grid">
-            <div class="retail__media">
+            <div class="retail__media" data-reveal="fade-right">
                 <img
                     src="{{ asset('frontend/assets/images/Group 1171276117_result.webp') }}"
                     alt="Benny books available in stores"
@@ -179,7 +179,7 @@
                 >
             </div>
 
-            <div class="retail__content">
+            <div class="retail__content" data-reveal="fade-left" style="--reveal-delay: 0.12s">
                 <h2 class="retail__title">Available on Amazon and Barnes &amp; Noble</h2>
                 <p class="retail__copy">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
@@ -260,7 +260,7 @@
 
     <section class="section section--white" id="testimonials">
         <div class="site-container">
-            <div class="testimonials__heading-wrap">
+            <div class="testimonials__heading-wrap" data-reveal="fade-up">
                 <img
                     class="testimonials__deco testimonials__deco--yarn"
                     src="{{ asset('frontend/assets/images/testimonials-yarn.png') }}"
@@ -282,7 +282,7 @@
                 >
             </div>
 
-            <div class="testimonials__video" data-testimonials-video>
+            <div class="testimonials__video" data-testimonials-video data-reveal="zoom" style="--reveal-delay: 0.1s">
                 <video
                     class="testimonials__video-el"
                     poster="{{ asset('frontend/assets/images/Mask group_result.webp') }}"
@@ -303,7 +303,7 @@
                 </button>
             </div>
 
-            <div class="testimonials__slider" data-testimonials-slider>
+            <div class="testimonials__slider" data-testimonials-slider data-reveal="fade-up" style="--reveal-delay: 0.18s">
                 <div class="testimonials__slide">
                     <x-site.testimonial
                         name="Lorem Ipsum"
@@ -358,7 +358,7 @@
 
     <section class="section section--ochre" id="contact">
         <div class="site-container contact__grid">
-            <div class="contact__media">
+            <div class="contact__media" data-reveal="fade-right">
                 <img
                     src="{{ asset('frontend/assets/images/Group 1171276117_result.webp') }}"
                     alt="Shop the Benny book collection"
@@ -371,7 +371,7 @@
                 </div>
             </div>
 
-            <div class="contact__content">
+            <div class="contact__content" data-reveal="fade-left" style="--reveal-delay: 0.12s">
                 <h2 class="contact__title">Contact Form</h2>
                 <x-site.contact-form />
             </div>
