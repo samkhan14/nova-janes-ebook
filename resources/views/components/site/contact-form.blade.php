@@ -14,47 +14,12 @@
             type="text"
             name="name"
             value="{{ old('name') }}"
-            placeholder="Username"
-            aria-label="Username"
+            placeholder="Name"
+            aria-label="Name"
             required
-            autocomplete="username"
+            autocomplete="name"
         >
         <div class="invalid-feedback" data-error-for="name"></div>
-    </div>
-
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <div class="contact-form__field">
-                <input
-                    id="contact-first-name"
-                    class="form-control"
-                    type="text"
-                    name="first_name"
-                    value="{{ old('first_name') }}"
-                    placeholder="First Name"
-                    aria-label="First Name"
-                    required
-                    autocomplete="given-name"
-                >
-                <div class="invalid-feedback" data-error-for="first_name"></div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="contact-form__field">
-                <input
-                    id="contact-last-name"
-                    class="form-control"
-                    type="text"
-                    name="last_name"
-                    value="{{ old('last_name') }}"
-                    placeholder="Last Name"
-                    aria-label="Last Name"
-                    required
-                    autocomplete="family-name"
-                >
-                <div class="invalid-feedback" data-error-for="last_name"></div>
-            </div>
-        </div>
     </div>
 
     <div class="contact-form__field mb-3">

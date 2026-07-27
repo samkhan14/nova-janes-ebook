@@ -3,9 +3,7 @@
 
 Someone submitted the Jane Mansons contact form.
 
-**Username:** {{ $name }}  
-**First Name:** {{ $firstName }}  
-**Last Name:** {{ $lastName }}  
+**Name:** {{ $name }}  
 **Email:** {{ $email }}
 
 **Message:**  

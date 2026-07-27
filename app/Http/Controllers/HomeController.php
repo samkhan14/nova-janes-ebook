@@ -17,6 +17,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function books(): View
+    {
+        return view('books');
+    }
+
     public function contact(ContactRequest $request): JsonResponse|RedirectResponse
     {
         $payload = $request->validated();
