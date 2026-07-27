@@ -13,11 +13,11 @@
         <nav id="site-nav" class="site-nav" data-site-nav aria-label="Primary">
             <a href="{{ url('/#about') }}">About the Author</a>
             <a href="{{ url('/#testimonials') }}">Testimonial</a>
-            <a href="{{ url('/#standards') }}">Gallery</a>
+            <a href="{{ url('/#standards') }}">Benny's Buddies</a>
             {{-- <a href="{{ route('books.index') }}">My Books</a> --}}
-            <a href="{{ url('/#trailers') }}">Video Trailers</a>
+            {{-- <a href="{{ url('/#trailers') }}">Video Trailers</a> --}}
         </nav>
 
-        <x-site.button href="{{ url('/#contact') }}" variant="dark" class="site-nav__cta">Contact Us</x-site.button>
+        <x-site.button href="#" variant="dark" class="site-nav__cta">Contact Me</x-site.button>
     </div>
 </header>
