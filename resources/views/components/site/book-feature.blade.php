@@ -35,7 +35,7 @@
             <div class="col-12 col-md-3">
                 <div class="book-feature__image">
                     <img
-                        src="{{ asset($image) }}"
+                        src="{{ \App\Support\CmsMedia::url($image) }}"
                         alt="{{ $imageAlt }}"
                         width="{{ $imageWidth }}"
                         height="{{ $imageHeight }}"
@@ -47,7 +47,7 @@
             <div class="col-12 col-md-3">
                 <div class="book-feature__image">
                     <img
-                        src="{{ asset($image) }}"
+                        src="{{ \App\Support\CmsMedia::url($image) }}"
                         alt="{{ $imageAlt }}"
                         width="{{ $imageWidth }}"
                         height="{{ $imageHeight }}"

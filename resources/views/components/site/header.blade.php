@@ -1,7 +1,15 @@
+@php
+    $header = $header ?? [];
+    $logo = \App\Support\CmsMedia::url($header['logo'] ?? 'frontend/assets/images/Jane-mansons-white-logo.png');
+    $navLinks = $header['nav_links'] ?? [];
+    $ctaLabel = $header['cta_label'] ?? 'Contact Me';
+    $ctaHref = $header['cta_href'] ?? '#contact';
+@endphp
+
 <header class="site-header">
     <div class="site-container site-header__inner">
         <a class="site-logo" href="{{ url('/') }}" aria-label="Jane Mansons home">
-            <img src="{{ asset('frontend/assets/images/Jane-mansons-white-logo.png') }}" alt="Jane Mansons" width="200"
+            <img src="{{ $logo }}" alt="Jane Mansons" width="200"
                 height="120">
         </a>
 
@@ -11,13 +19,15 @@
         </button>
 
         <nav id="site-nav" class="site-nav" data-site-nav aria-label="Primary">
-            <a href="{{ url('/#about') }}">About the Author</a>
-            <a href="{{ url('/#testimonials') }}">Testimonial</a>
-            <a href="{{ url('/#standards') }}">Benny's Buddies</a>
-            {{-- <a href="{{ route('books.index') }}">My Books</a> --}}
-            {{-- <a href="{{ url('/#trailers') }}">Video Trailers</a> --}}
+            @foreach ($navLinks as $link)
+                @php
+                    $href = $link['url'] ?? '#';
+                    $isAbsolute = \Illuminate\Support\Str::startsWith($href, ['http://', 'https://', '//', '#', '/']);
+                @endphp
+                <a href="{{ $isAbsolute ? $href : url($href) }}">{{ $link['label'] ?? '' }}</a>
+            @endforeach
         </nav>
 
-        <x-site.button href="#" variant="dark" class="site-nav__cta">Contact Me</x-site.button>
+        <x-site.button href="{{ $ctaHref }}" variant="dark" class="site-nav__cta">{{ $ctaLabel }}</x-site.button>
     </div>
 </header>

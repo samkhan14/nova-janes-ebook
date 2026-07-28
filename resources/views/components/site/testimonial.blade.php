@@ -9,7 +9,7 @@
 <article class="testimonial-card">
     <img
         class="testimonial-card__avatar"
-        src="{{ asset($avatar) }}"
+        src="{{ \App\Support\CmsMedia::url($avatar) }}"
         alt="{{ $avatarAlt ?? $name }}"
         width="88"
         height="88"
