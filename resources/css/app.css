@@ -467,6 +467,14 @@ section#contact {
     gap: var(--space-4);
 }
 
+.author__follow-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    color: var(--color-brown);
+    letter-spacing: 0.01em;
+}
+
 .author__social {
     display: flex;
     align-items: center;
@@ -1264,6 +1272,142 @@ section#contact {
     border-top: 0;
 }
 
+/* =========================================================
+   GALLERY PAGE — masonry
+   ========================================================= */
+
+.page--gallery {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-page {
+    flex: 1;
+    padding-block: clamp(2.25rem, 5vw, 4.25rem);
+}
+
+.gallery-page .site-container {
+    max-width: 920px;
+}
+
+.gallery-masonry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 1.8vw, 1.1rem);
+}
+
+.gallery-masonry__item {
+    margin: 0;
+    border-radius: 0.9rem;
+    overflow: hidden;
+    background: #fff8ef;
+    box-shadow: 0 10px 22px rgba(74, 38, 12, 0.1);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+    aspect-ratio: 3 / 4;
+}
+
+.gallery-masonry__item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(74, 38, 12, 0.14);
+}
+
+.gallery-masonry__trigger {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+}
+
+.gallery-masonry__item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.gallery-empty {
+    margin: 0;
+    text-align: center;
+    color: var(--color-brown);
+    font-size: 1.05rem;
+}
+
+.gallery-empty code {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 3vw, 2rem);
+    background: rgba(28, 14, 4, 0.9);
+    backdrop-filter: blur(4px);
+}
+
+.gallery-lightbox[hidden] {
+    display: none !important;
+}
+
+.gallery-lightbox__image {
+    width: min(92vw, 860px);
+    height: min(86vh, 960px);
+    max-width: none;
+    max-height: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.gallery-lightbox__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #4a2200;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.gallery-lightbox__close:hover,
+.gallery-lightbox__close:focus-visible {
+    background: #fff;
+}
+
+body.is-gallery-lightbox-open {
+    overflow: hidden;
+}
+
+@media (min-width: 576px) {
+    .gallery-masonry {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .gallery-masonry {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (min-width: 768px) {
     .books-list__item {
         grid-template-columns: 200px 1fr;
@@ -1563,6 +1707,17 @@ section#contact {
    Paste line: is block ke andar, closing `}` se pehle
 */
 @media (max-width: 767.98px) {
+    .hero {
+        min-height: 100svh;
+        padding-bottom: 1.25rem;
+    }
+
+    .hero.section--ochre {
+        background-size: cover;
+        background-position: top center;
+        background-repeat: no-repeat;
+    }
+
     h1.hero__title {
         font-size: 24px;
     }
@@ -1572,9 +1727,7 @@ section#contact {
     }
 
     .hero__social {
-        left: 51%;
-        bottom: 8.5%;
-        gap: 0.35rem;
+        display: none;
     }
 
     .hero__social-link {

@@ -341,11 +341,11 @@ class CmsContentService
         return [
             'logo' => 'frontend/assets/images/Jane-mansons-white-logo.png',
             'cta_label' => 'Contact Me',
-            'cta_href' => '#contact',
+            'cta_href' => 'tel:+19546482444',
             'nav_links' => [
                 ['label' => 'About the Author', 'url' => '/#about'],
                 ['label' => 'Testimonial', 'url' => '/#testimonials'],
-                ['label' => "Benny's Buddies", 'url' => '/#standards'],
+                ['label' => "Benny's Buddies", 'url' => '/gallery'],
             ],
         ];
     }

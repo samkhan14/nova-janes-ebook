@@ -53,7 +53,7 @@
                     {{ $about['copy'] ?? '' }}
                 </p>
                 <div class="author__actions">
-                    <x-site.button href="{{ $about['button_href'] ?? '#contact' }}" variant="dark">{{ $about['button_label'] ?? 'Follow On' }}</x-site.button>
+                    <span class="author__follow-label">{{ $about['button_label'] ?? 'Follow On' }}</span>
                     <div class="author__social" aria-label="Social links">
                         @if (!empty($about['instagram_url']))
                         <a href="{{ $about['instagram_url'] }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
