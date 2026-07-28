@@ -1,7 +1,7 @@
 <header class="site-header">
     <div class="site-container site-header__inner">
         <a class="site-logo" href="{{ url('/') }}" aria-label="Jane Mansons home">
-            <img src="{{ asset('frontend/assets/images/Jane Mansons_result.webp') }}" alt="Jane Mansons" width="200"
+            <img src="{{ asset('frontend/assets/images/Jane-mansons-white-logo.png') }}" alt="Jane Mansons" width="200"
                 height="120">
         </a>
 
