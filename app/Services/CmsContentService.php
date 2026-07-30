@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\CmsSection;
 use App\Support\CmsMedia;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class CmsContentService
 {
@@ -28,6 +30,11 @@ class CmsContentService
     public function footer(): array
     {
         return CmsSection::getContent('footer', 'main', $this->defaultFooter());
+    }
+
+    public function gallery(): array
+    {
+        return CmsSection::getContent('gallery', 'main', $this->defaultGallery());
     }
 
     public function saveHome(array $input, array $files = []): void
@@ -161,6 +168,35 @@ class CmsContentService
     {
         CmsSection::putContent('footer', 'main', [
             'copyright' => $input['copyright'] ?? '',
+        ]);
+    }
+
+    public function saveGallery(array $input, array $files = []): void
+    {
+        $items = [];
+
+        foreach ($input['items'] ?? [] as $index => $item) {
+            $path = CmsMedia::storeOrKeep(
+                $files['items'][$index]['upload'] ?? null,
+                $item['image'] ?? null,
+                'cms/gallery'
+            );
+
+            if (blank($path)) {
+                continue;
+            }
+
+            $items[] = [
+                'image' => $path,
+                'alt' => $item['alt'] ?? '',
+            ];
+        }
+
+        CmsSection::putContent('gallery', 'main', [
+            'eyebrow' => $input['eyebrow'] ?? '',
+            'title' => $input['title'] ?? '',
+            'lead' => $input['lead'] ?? '',
+            'items' => $items,
         ]);
     }
 
@@ -354,6 +390,39 @@ class CmsContentService
     {
         return [
             'copyright' => '©Copyrights All Rights Reserved {year} | Jane Mansons',
+        ];
+    }
+
+    public function defaultGallery(): array
+    {
+        $items = [];
+        $directory = public_path('frontend/assets/images/gallery');
+        $extensions = ['jpg', 'jpeg', 'jfif', 'png', 'webp', 'gif', 'avif'];
+
+        if (File::isDirectory($directory)) {
+            $items = collect(File::files($directory))
+                ->filter(fn ($file) => in_array(strtolower($file->getExtension()), $extensions, true))
+                ->sortBy(fn ($file) => Str::lower($file->getFilename()))
+                ->values()
+                ->map(function ($file) {
+                    $name = $file->getFilename();
+
+                    return [
+                        'image' => 'frontend/assets/images/gallery/'.$name,
+                        'alt' => Str::of(pathinfo($name, PATHINFO_FILENAME))
+                            ->replace(['-', '_'], ' ')
+                            ->title()
+                            ->toString(),
+                    ];
+                })
+                ->all();
+        }
+
+        return [
+            'eyebrow' => '',
+            'title' => "Benny's Little Readers",
+            'lead' => "A heartwarming collection of Benny's friends proudly sharing their favorite Benny books—capturing joyful smiles, treasured reading moments, and the love of stories that bring children together.",
+            'items' => $items,
         ];
     }
 }

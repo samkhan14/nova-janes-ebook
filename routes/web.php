@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\FooterCmsController;
+use App\Http\Controllers\Admin\GalleryCmsController;
 use App\Http\Controllers\Admin\HeaderCmsController;
 use App\Http\Controllers\Admin\HomeCmsController;
 use App\Http\Controllers\Admin\SiteSettingsController;
@@ -26,6 +27,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     Route::get('/cms/footer', [FooterCmsController::class, 'edit'])->name('cms.footer.edit');
     Route::put('/cms/footer', [FooterCmsController::class, 'update'])->name('cms.footer.update');
+
+    Route::get('/cms/gallery', [GalleryCmsController::class, 'edit'])->name('cms.gallery.edit');
+    Route::put('/cms/gallery', [GalleryCmsController::class, 'update'])->name('cms.gallery.update');
 
     Route::get('/settings/site', [SiteSettingsController::class, 'edit'])->name('settings.site.edit');
     Route::put('/settings/site', [SiteSettingsController::class, 'update'])->name('settings.site.update');

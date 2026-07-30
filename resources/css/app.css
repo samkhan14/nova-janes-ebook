@@ -1288,8 +1288,10 @@ section#contact {
     padding-block: clamp(2.25rem, 5vw, 4.25rem);
 }
 
-.gallery-page .site-container {
-    max-width: 920px;
+.gallery-page__inner {
+    width: 100%;
+    max-width: none;
+    padding-inline: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 .gallery-masonry {

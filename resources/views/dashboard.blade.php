@@ -16,6 +16,10 @@
             <h2 class="font-semibold text-gray-900">CMS — Footer</h2>
             <p class="mt-2 text-sm text-gray-600">Update copyright and footer text.</p>
         </a>
+        <a href="{{ route('admin.cms.gallery.edit') }}" class="rounded-lg bg-white p-6 shadow-sm border border-gray-200 hover:border-indigo-300 transition">
+            <h2 class="font-semibold text-gray-900">CMS — Gallery</h2>
+            <p class="mt-2 text-sm text-gray-600">Manage gallery page title, lead text, and images.</p>
+        </a>
         <a href="{{ route('admin.settings.site.edit') }}" class="rounded-lg bg-white p-6 shadow-sm border border-gray-200 hover:border-indigo-300 transition">
             <h2 class="font-semibold text-gray-900">Site Settings</h2>
             <p class="mt-2 text-sm text-gray-600">Site name, meta description, and contact email.</p>

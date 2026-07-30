@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', 'Gallery | Jane Mansons')
+@section('title', ($gallery['title'] ?? 'Gallery').' | Jane Mansons')
 
 @section('content')
     <div class="page page--gallery">
@@ -8,16 +8,18 @@
             <x-site.header />
 
             <div class="site-container books-banner__inner" data-reveal="fade-up">
-                <span class="eyebrow books-banner__eyebrow">Moments &amp; Artwork</span>
-                <h1 class="books-banner__title">Gallery</h1>
-                <p class="books-banner__lead">
-                    A look inside the Benny world — characters, covers, and story scenes filled with warmth and wonder.
-                </p>
+                @if (!empty($gallery['eyebrow']))
+                    <span class="eyebrow books-banner__eyebrow">{{ $gallery['eyebrow'] }}</span>
+                @endif
+                <h1 class="books-banner__title">{{ $gallery['title'] ?? "Benny's Little Readers" }}</h1>
+                @if (!empty($gallery['lead']))
+                    <p class="books-banner__lead">{{ $gallery['lead'] }}</p>
+                @endif
             </div>
         </section>
 
         <section class="section section--white gallery-page">
-            <div class="site-container">
+            <div class="gallery-page__inner">
                 @if (count($images))
                     <div class="gallery-masonry" data-reveal="fade-up" data-gallery>
                         @foreach ($images as $image)
@@ -26,12 +28,12 @@
                                     type="button"
                                     class="gallery-masonry__trigger"
                                     data-gallery-open
-                                    data-gallery-src="{{ asset($image['src']) }}"
+                                    data-gallery-src="{{ $image['src'] }}"
                                     data-gallery-alt="{{ $image['alt'] }}"
                                     aria-label="View {{ $image['alt'] }}"
                                 >
                                     <img
-                                        src="{{ asset($image['src']) }}"
+                                        src="{{ $image['src'] }}"
                                         alt="{{ $image['alt'] }}"
                                         loading="lazy"
                                         decoding="async"
@@ -42,8 +44,7 @@
                     </div>
                 @else
                     <p class="gallery-empty" data-reveal="fade-up">
-                        Gallery images coming soon. Place files in
-                        <code>public/frontend/assets/images/gallery</code>.
+                        Gallery images coming soon.
                     </p>
                 @endif
             </div>

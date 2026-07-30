@@ -55,6 +55,10 @@
                            class="block px-3 py-2 rounded-md {{ request()->routeIs('admin.cms.footer.*') ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
                             Footer
                         </a>
+                        <a href="{{ route('admin.cms.gallery.edit') }}"
+                           class="block px-3 py-2 rounded-md {{ request()->routeIs('admin.cms.gallery.*') ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                            Gallery
+                        </a>
                     </div>
                 </div>
 

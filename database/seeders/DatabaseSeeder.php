@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         CmsSection::putContent('home', 'contact', $cms->defaultContact());
         CmsSection::putContent('header', 'main', $cms->defaultHeader());
         CmsSection::putContent('footer', 'main', $cms->defaultFooter());
+        CmsSection::putContent('gallery', 'main', $cms->defaultGallery());
 
         SiteSetting::setValue('site_name', 'Jane Mansons', 'text', 'general', 'Site Name');
         SiteSetting::setValue(
