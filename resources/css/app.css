@@ -853,7 +853,7 @@ section#contact {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(1rem, 3vw, 2.5rem);
+    gap: clamp(1rem, 3vw, 2.1rem);
     margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
@@ -884,11 +884,11 @@ section#contact {
 }
 
 .testimonials__deco--yarn {
-    width: clamp(88px, 12vw, 170px);
+    width: clamp(88px, 12vw, 190px);
 }
 
 .testimonials__deco--glasses {
-    width: clamp(72px, 10vw, 145px);
+    width: clamp(72px, 10vw, 170px);
 }
 
 .testimonials__video {
