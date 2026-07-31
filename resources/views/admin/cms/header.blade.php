@@ -9,13 +9,13 @@
     @method('PUT')
 
     <section class="rounded-lg bg-white shadow-sm border border-gray-200 p-6 space-y-4">
-        <div>
+        {{-- <div>
             <x-input-label value="Logo" />
             @if (!empty($header['logo']))
                 <img src="{{ \App\Support\CmsMedia::url($header['logo']) }}" alt="" class="mt-2 mb-2 h-16 object-contain bg-slate-800 rounded p-2">
             @endif
             <input type="file" name="logo" accept="image/*" class="mt-1 block w-full text-sm">
-        </div>
+        </div> --}}
 
         <div class="grid gap-4 md:grid-cols-2">
             <div>

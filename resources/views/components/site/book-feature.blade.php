@@ -20,52 +20,44 @@
     data-reveal="{{ $isImageRight ? 'fade-left' : 'fade-right' }}"
 >
     <div class="row align-items-start book-feature__row g-3 g-md-4">
-        @if ($isImageRight)
-            <div class="col-12 col-md-3" aria-hidden="true"></div>
-
-            <div class="col-12 col-md-6">
-                <div class="book-feature__content">
-                    <span class="book-feature__label">{{ $label }}</span>
-                    <h3 class="book-feature__title">{{ $title }}</h3>
-                    <p class="book-feature__copy">{{ $copy }}</p>
-                    <x-site.button :href="$buttonHref" variant="dark">{{ $buttonLabel }}</x-site.button>
-                </div>
+        {{-- Mobile always: image then text. Desktop keeps zigzag via order-md. --}}
+        <div @class([
+            'col-12 col-md-3',
+            'order-1',
+            'order-md-3' => $isImageRight,
+        ])>
+            <div class="book-feature__image">
+                <img
+                    src="{{ \App\Support\CmsMedia::url($image) }}"
+                    alt="{{ $imageAlt }}"
+                    width="{{ $imageWidth }}"
+                    height="{{ $imageHeight }}"
+                    loading="lazy"
+                >
             </div>
+        </div>
 
-            <div class="col-12 col-md-3">
-                <div class="book-feature__image">
-                    <img
-                        src="{{ \App\Support\CmsMedia::url($image) }}"
-                        alt="{{ $imageAlt }}"
-                        width="{{ $imageWidth }}"
-                        height="{{ $imageHeight }}"
-                        loading="lazy"
-                    >
-                </div>
+        <div @class([
+            'col-12 col-md-6',
+            'order-2',
+            'order-md-2' => $isImageRight,
+        ])>
+            <div class="book-feature__content">
+                <span class="book-feature__label">{{ $label }}</span>
+                <h3 class="book-feature__title">{{ $title }}</h3>
+                <p class="book-feature__copy">{{ $copy }}</p>
+                <x-site.button :href="$buttonHref" variant="dark">{{ $buttonLabel }}</x-site.button>
             </div>
-        @else
-            <div class="col-12 col-md-3">
-                <div class="book-feature__image">
-                    <img
-                        src="{{ \App\Support\CmsMedia::url($image) }}"
-                        alt="{{ $imageAlt }}"
-                        width="{{ $imageWidth }}"
-                        height="{{ $imageHeight }}"
-                        loading="lazy"
-                    >
-                </div>
-            </div>
+        </div>
 
-            <div class="col-12 col-md-6">
-                <div class="book-feature__content">
-                    <span class="book-feature__label">{{ $label }}</span>
-                    <h3 class="book-feature__title">{{ $title }}</h3>
-                    <p class="book-feature__copy">{{ $copy }}</p>
-                    <x-site.button :href="$buttonHref" variant="dark">{{ $buttonLabel }}</x-site.button>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-3" aria-hidden="true"></div>
-        @endif
+        <div
+            @class([
+                'col-12 col-md-3',
+                'd-none d-md-block',
+                'order-md-1' => $isImageRight,
+                'order-md-3' => ! $isImageRight,
+            ])
+            aria-hidden="true"
+        ></div>
     </div>
 </article>

@@ -19,7 +19,7 @@
         </section>
 
         <section class="section section--white gallery-page">
-            <div class="gallery-page__inner">
+            <div class="site-container">
                 @if (count($images))
                     <div class="gallery-masonry" data-reveal="fade-up" data-gallery>
                         @foreach ($images as $image)

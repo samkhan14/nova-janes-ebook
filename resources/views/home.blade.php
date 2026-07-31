@@ -175,11 +175,20 @@
             </div>
 
             <div class="testimonials__video" data-testimonials-video data-reveal="zoom" style="--reveal-delay: 0.1s">
-                <video class="testimonials__video-el"
-                    poster="{{ CmsMedia::url($testimonials['poster'] ?? null) }}" playsinline preload="metadata"
-                    controlsList="nodownload">
-                    <source src="{{ CmsMedia::url($testimonials['video'] ?? null) }}" type="video/mp4">
-                </video>
+                @php
+                    $testimonialVideo = $testimonials['video'] ?? 'frontend/assets/videos/demo-vdo.mp4';
+                    if (blank($testimonialVideo) || $testimonialVideo === 'frontend/assets/videos/testimonials.mp4') {
+                        $testimonialVideo = 'frontend/assets/videos/demo-vdo.mp4';
+                    }
+                @endphp
+                <video
+                    class="testimonials__video-el"
+                    poster="{{ CmsMedia::url($testimonials['poster'] ?? null) }}"
+                    playsinline
+                    preload="none"
+                    controlsList="nodownload"
+                    data-src="{{ CmsMedia::url($testimonialVideo) }}"
+                ></video>
                 <button class="testimonials__play" type="button" aria-label="Play video">
                     <span class="testimonials__play-ring testimonials__play-ring--outer" aria-hidden="true"></span>
                     <span class="testimonials__play-ring testimonials__play-ring--mid" aria-hidden="true"></span>
@@ -211,6 +220,12 @@
                     alt="Shop the Benny book collection" width="950" height="641" loading="lazy">
                 <div class="contact__order">
                     <x-site.button href="{{ $contact['button_href'] ?? route('books.index') }}" variant="dark">{{ $contact['button_label'] ?? 'Order Now' }}</x-site.button>
+                    <x-site.social-links
+                        :instagram="$hero['instagram_url'] ?? null"
+                        :facebook="$hero['facebook_url'] ?? null"
+                        :threads="$hero['threads_url'] ?? null"
+                        variant="contact"
+                    />
                 </div>
             </div>
 

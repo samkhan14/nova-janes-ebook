@@ -51,6 +51,36 @@ const testimonialsVideoWrap = document.querySelector('[data-testimonials-video]'
 if (testimonialsVideoWrap) {
     const video = testimonialsVideoWrap.querySelector('video');
     const playBtn = testimonialsVideoWrap.querySelector('.testimonials__play');
+    let sourceReady = false;
+
+    const ensureVideoSource = () => {
+        if (!video || sourceReady) {
+            return Promise.resolve();
+        }
+
+        const src = video.dataset.src;
+
+        if (!src) {
+            return Promise.resolve();
+        }
+
+        return new Promise((resolve) => {
+            const onReady = () => {
+                video.removeEventListener('loadeddata', onReady);
+                resolve();
+            };
+
+            video.addEventListener('loadeddata', onReady);
+
+            const source = document.createElement('source');
+            source.src = src;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+            video.load();
+            sourceReady = true;
+            video.removeAttribute('data-src');
+        });
+    };
 
     const setPlaying = (playing) => {
         testimonialsVideoWrap.classList.toggle('is-playing', playing);
@@ -59,10 +89,33 @@ if (testimonialsVideoWrap) {
         }
     };
 
+    if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    ensureVideoSource();
+                    observer.disconnect();
+                });
+            },
+            {
+                rootMargin: '120px 0px',
+                threshold: 0.15,
+            }
+        );
+
+        videoObserver.observe(testimonialsVideoWrap);
+    }
+
     playBtn?.addEventListener('click', async () => {
         if (!video) {
             return;
         }
+
+        await ensureVideoSource();
 
         if (video.paused) {
             try {

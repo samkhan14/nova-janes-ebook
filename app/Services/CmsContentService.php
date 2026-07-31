@@ -317,7 +317,7 @@ class CmsContentService
     {
         return [
             'title' => "What Benny's Buddies Say",
-            'video' => 'frontend/assets/videos/testimonials.mp4',
+            'video' => 'frontend/assets/videos/demo-vdo.mp4',
             'poster' => 'frontend/assets/images/Mask group_result.webp',
             'deco_yarn' => 'frontend/assets/images/testimonials-yarn.png',
             'deco_glasses' => 'frontend/assets/images/testimonials-glasses.png',
