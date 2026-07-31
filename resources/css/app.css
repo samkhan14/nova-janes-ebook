@@ -1119,7 +1119,7 @@ section#contact {
 
 .contact__title {
     font-family: var(--font-display);
-    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    font-size: 50px;
     font-weight: 700;
     margin: 0 0 var(--space-6);
     text-transform: uppercase;
