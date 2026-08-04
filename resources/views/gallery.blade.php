@@ -21,7 +21,7 @@
         <section class="section section--white gallery-page">
             <div class="site-container">
                 @if (count($images))
-                    <div class="gallery-masonry" data-reveal="fade-up" data-gallery>
+                    <div class="gallery-masonry is-revealed" data-gallery>
                         @foreach ($images as $image)
                             <figure class="gallery-masonry__item">
                                 <button

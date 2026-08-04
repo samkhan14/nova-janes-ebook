@@ -144,17 +144,17 @@
                     @if (!empty($retail['amazon_url']))
                     <a class="retail__logo-btn"
                         href="{{ $retail['amazon_url'] }}"
-                        aria-label="Available at Amazon" target="_blank">
-                        <img src="{{ CmsMedia::url($retail['amazon_logo'] ?? null) }}"
+                        aria-label="Available at Amazon" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('frontend/assets/images/Group 1171276127_result.webp') }}"
                             alt="Available at Amazon" width="314" height="150" loading="lazy">
                     </a>
                     @endif
                     @if (!empty($retail['bn_url']))
                     <a class="retail__logo-btn"
                         href="{{ $retail['bn_url'] }}"
-                        aria-label="Barnes & Noble" target="_blank">
-                        <img src="{{ CmsMedia::url($retail['bn_logo'] ?? null) }}" alt="Barnes & Noble"
-                            width="314" height="150" loading="lazy">
+                        aria-label="Barnes & Noble" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('frontend/assets/images/Group 1171276115_result.webp') }}"
+                            alt="Barnes & Noble" width="314" height="150" loading="lazy">
                     </a>
                     @endif
                 </div>
@@ -200,16 +200,28 @@
             <div class="testimonials__slider" data-testimonials-slider data-reveal="fade-up"
                 style="--reveal-delay: 0.18s">
                 @foreach (($testimonials['items'] ?? []) as $item)
+                    @php
+                        $avatar = $item['avatar'] ?? '';
+                        if (
+                            filled($avatar)
+                            && \Illuminate\Support\Str::startsWith($avatar, 'cms/')
+                            && ! \Illuminate\Support\Facades\Storage::disk('public')->exists($avatar)
+                        ) {
+                            $name = \Illuminate\Support\Str::lower($item['name'] ?? '');
+                            $avatar = str_contains($name, 'laurie') || str_contains($name, 'laury')
+                                ? 'frontend/assets/images/review-img1.png'
+                                : 'frontend/assets/images/Mask group (2)_result.webp';
+                        }
+                    @endphp
                     <div class="testimonials__slide">
                         <x-site.testimonial
                             :name="$item['name'] ?? ''"
                             :headline="$item['headline'] ?? ''"
                             :quote="$item['quote'] ?? ''"
-                            :avatar="$item['avatar'] ?? ''"
+                            :avatar="$avatar"
                         />
                     </div>
-                @endforeach
-            </div>
+                @endforeach            </div>
         </div>
     </section>
 

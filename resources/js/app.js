@@ -262,8 +262,9 @@ if (revealEls.length) {
                 });
             },
             {
-                threshold: 0.18,
-                rootMargin: '0px 0px -8% 0px',
+                // Low threshold so tall sections (e.g. gallery) still reveal on mobile
+                threshold: 0.01,
+                rootMargin: '0px 0px -2% 0px',
             }
         );
 

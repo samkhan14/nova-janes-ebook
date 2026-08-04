@@ -21,9 +21,19 @@ class HomeCmsController extends Controller
 
     public function update(Request $request): RedirectResponse
     {
+        $files = $request->allFiles();
+
+        // Nested file inputs (testimonials[items][N][avatar]) are more reliable via file()
+        foreach ($request->input('testimonials.items', []) as $index => $item) {
+            $avatar = $request->file("testimonials.items.$index.avatar");
+            if ($avatar) {
+                $files['testimonials']['items'][$index]['avatar'] = $avatar;
+            }
+        }
+
         $this->cms->saveHome(
             $request->except(['_token', '_method']),
-            $request->allFiles()
+            $files
         );
 
         return back()->with('status', 'Home page content updated successfully.');

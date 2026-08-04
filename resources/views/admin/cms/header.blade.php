@@ -24,7 +24,8 @@
             </div>
             <div>
                 <x-input-label value="CTA Link" />
-                <x-text-input name="cta_href" class="mt-1 block w-full" :value="old('cta_href', $header['cta_href'] ?? '')" />
+                <x-text-input name="cta_href" class="mt-1 block w-full" :value="old('cta_href', $header['cta_href'] ?? '')" placeholder="tel:+19546482444 or email@example.com" />
+                <p class="mt-1 text-xs text-gray-500">Phone: <code>tel:+1...</code> · Email: plain address or <code>mailto:</code> · Page: <code>/#contact</code></p>
             </div>
         </div>
     </section>

@@ -99,14 +99,15 @@ class CmsContentService
         ]);
 
         $retailCurrent = CmsSection::getContent('home', 'retail', $this->defaultRetail());
+        $retailDefaults = $this->defaultRetail();
         CmsSection::putContent('home', 'retail', [
             'title' => $input['retail']['title'] ?? '',
             'copy' => $input['retail']['copy'] ?? '',
             'image' => CmsMedia::storeOrKeep($files['retail']['image'] ?? null, $retailCurrent['image'] ?? null, 'cms/retail'),
             'amazon_url' => $input['retail']['amazon_url'] ?? '',
-            'amazon_logo' => CmsMedia::storeOrKeep($files['retail']['amazon_logo'] ?? null, $retailCurrent['amazon_logo'] ?? null, 'cms/retail'),
+            'amazon_logo' => $retailDefaults['amazon_logo'],
             'bn_url' => $input['retail']['bn_url'] ?? '',
-            'bn_logo' => CmsMedia::storeOrKeep($files['retail']['bn_logo'] ?? null, $retailCurrent['bn_logo'] ?? null, 'cms/retail'),
+            'bn_logo' => $retailDefaults['bn_logo'],
         ]);
 
         $testimonialsCurrent = CmsSection::getContent('home', 'testimonials', $this->defaultTestimonials());
@@ -156,10 +157,26 @@ class CmsContentService
             ];
         }
 
+        $ctaHref = trim((string) ($input['cta_href'] ?? ''));
+        $ctaHrefLower = strtolower($ctaHref);
+
+        if (
+            $ctaHref !== ''
+            && ! str_starts_with($ctaHrefLower, 'http://')
+            && ! str_starts_with($ctaHrefLower, 'https://')
+            && ! str_starts_with($ctaHrefLower, 'mailto:')
+            && ! str_starts_with($ctaHrefLower, 'tel:')
+            && ! str_starts_with($ctaHref, '/')
+            && ! str_starts_with($ctaHref, '#')
+            && filter_var($ctaHref, FILTER_VALIDATE_EMAIL)
+        ) {
+            $ctaHref = 'mailto:'.$ctaHref;
+        }
+
         CmsSection::putContent('header', 'main', [
             'logo' => CmsMedia::storeOrKeep($files['logo'] ?? null, $current['logo'] ?? null, 'cms/header'),
             'cta_label' => $input['cta_label'] ?? '',
-            'cta_href' => $input['cta_href'] ?? '',
+            'cta_href' => $ctaHref,
             'nav_links' => $links,
         ]);
     }
@@ -356,7 +373,7 @@ class CmsContentService
                     'name' => 'Dr Laurie Emery ',
                     'headline' => 'Amazing!!',
                     'quote' => 'Benny & The Red Ear gently teaches children that what makes us different is not something to hide, but often the very thing that makes us uniquely lovable. Rather than preaching acceptance, the story allows children to experience it emotionally through Benny’s journey. It opens meaningful conversations about self-worth, resilience, empathy, and belonging, making it a wonderful resource for parents, grandparents, educators, and therapists alike. The warmth of the storytelling reminds children that love isn’t based on perfection—it’s found in being fully ourselves. I highly recommend this beautiful book to every family with young children. ',
-                    'avatar' => 'frontend/assets/images/Mask group (2)_result.webp',
+                    'avatar' => 'frontend/assets/images/review-img1.png',
                 ],
             ],
         ];

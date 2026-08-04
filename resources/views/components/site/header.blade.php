@@ -3,7 +3,17 @@
     $logo = \App\Support\CmsMedia::url($header['logo'] ?? 'frontend/assets/images/Jane-mansons-white-logo.png');
     $navLinks = $header['nav_links'] ?? [];
     $ctaLabel = $header['cta_label'] ?? 'Contact Me';
-    $ctaHref = $header['cta_href'] ?? 'tel:+19546482444';
+    $ctaHref = trim((string) ($header['cta_href'] ?? 'tel:+19546482444'));
+    $ctaHrefLower = \Illuminate\Support\Str::lower($ctaHref);
+
+    if (
+        filled($ctaHref)
+        && ! \Illuminate\Support\Str::startsWith($ctaHrefLower, ['http://', 'https://', '//', 'mailto:', 'tel:', '/', '#'])
+        && filter_var($ctaHref, FILTER_VALIDATE_EMAIL)
+    ) {
+        $ctaHref = 'mailto:'.$ctaHref;
+    }
+
     $instagram = $header['instagram_url'] ?? 'https://www.instagram.com/author_jane_mansons?igsh=MW9qNHd0YzE1cWI4aw==';
     $facebook = $header['facebook_url'] ?? 'https://www.facebook.com/share/1D4edKsnNz/';
     $threads = $header['threads_url'] ?? 'https://www.threads.net/@authorjanemansons';

@@ -215,20 +215,12 @@
             <div class="space-y-3">
                 <x-input-label value="Amazon URL" />
                 <x-text-input name="retail[amazon_url]" class="mt-1 block w-full" :value="old('retail.amazon_url', $retail['amazon_url'] ?? '')" />
-                <x-input-label value="Amazon Logo" />
-                @if (!empty($retail['amazon_logo']))
-                    <img src="{{ \App\Support\CmsMedia::url($retail['amazon_logo']) }}" alt="" class="mt-2 mb-2 h-16 object-contain">
-                @endif
-                <input type="file" name="retail[amazon_logo]" accept="image/*" class="block w-full text-sm">
+                <p class="text-xs text-gray-500">Amazon logo is static on the site (not managed here).</p>
             </div>
             <div class="space-y-3">
-                <x-input-label value="Barnes & Noble URL" />
+                <x-input-label value="Barnes &amp; Noble URL" />
                 <x-text-input name="retail[bn_url]" class="mt-1 block w-full" :value="old('retail.bn_url', $retail['bn_url'] ?? '')" />
-                <x-input-label value="Barnes & Noble Logo" />
-                @if (!empty($retail['bn_logo']))
-                    <img src="{{ \App\Support\CmsMedia::url($retail['bn_logo']) }}" alt="" class="mt-2 mb-2 h-16 object-contain">
-                @endif
-                <input type="file" name="retail[bn_logo]" accept="image/*" class="block w-full text-sm">
+                <p class="text-xs text-gray-500">Barnes &amp; Noble logo is static on the site (not managed here).</p>
             </div>
         </div>
     </section>
@@ -278,7 +270,19 @@
                 </div>
                 <textarea name="testimonials[items][{{ $index }}][quote]" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Quote">{{ old('testimonials.items.'.$index.'.quote', $item['quote'] ?? '') }}</textarea>
                 @if (!empty($item['avatar']))
-                    <img src="{{ \App\Support\CmsMedia::url($item['avatar']) }}" alt="" class="h-12 w-12 rounded-full object-cover">
+                    @php
+                        $adminAvatar = $item['avatar'];
+                        if (
+                            \Illuminate\Support\Str::startsWith($adminAvatar, 'cms/')
+                            && ! \Illuminate\Support\Facades\Storage::disk('public')->exists($adminAvatar)
+                        ) {
+                            $adminName = \Illuminate\Support\Str::lower($item['name'] ?? '');
+                            $adminAvatar = str_contains($adminName, 'laurie') || str_contains($adminName, 'laury')
+                                ? 'frontend/assets/images/review-img1.png'
+                                : $adminAvatar;
+                        }
+                    @endphp
+                    <img src="{{ \App\Support\CmsMedia::url($adminAvatar) }}" alt="" class="h-12 w-12 rounded-full object-cover">
                 @endif
                 <input type="file" name="testimonials[items][{{ $index }}][avatar]" accept="image/*" class="block w-full text-sm">
             </div>
