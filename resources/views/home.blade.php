@@ -119,9 +119,11 @@
             <div class="standards__grid">
                 @foreach (($stanzas['cards'] ?? []) as $index => $card)
                     <article class="standard-card" data-reveal="fade-up" style="--reveal-delay: {{ number_format(0.05 + ($index * 0.06), 2) }}s">
-                        <h3>{{ $card['title'] ?? '' }}</h3>
+                        <div class="standard-card__meta">
+                            <h3>{{ $card['title'] ?? '' }}</h3>
+                            <span class="standard-card__page">{{ $card['page'] ?? '' }}</span>
+                        </div>
                         <p>{{ $card['body'] ?? '' }}</p>
-                        <span class="standard-card__page">{{ $card['page'] ?? '' }}</span>
                     </article>
                 @endforeach
             </div>
@@ -158,6 +160,67 @@
                     </a>
                     @endif
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section print-cta" id="print-editions">
+        <div class="site-container print-cta__shell">
+            <div class="print-cta__panel" data-reveal="fade-up">
+                <div class="print-cta__copy">
+                    <span class="eyebrow print-cta__eyebrow">Print editions</span>
+                    <h2 class="print-cta__title">Get the print edition</h2>
+                    <p class="print-cta__lead">
+                        Hold Benny’s stories in your hands. Choose paperback or hardcover,
+                        add to cart, and we’ll ship to your door. Kindle ebooks stay on Amazon.
+                    </p>
+
+                    <ul class="print-cta__perks" aria-label="What you get">
+                        <li>Paperback &amp; hardcover</li>
+                        <li>Flat shipping at checkout</li>
+                        <li>Ebook still on Amazon</li>
+                    </ul>
+
+                    <div class="print-cta__actions">
+                        <x-site.button :href="route('books.index')" variant="dark">
+                            Browse My Books
+                        </x-site.button>
+                        <a class="print-cta__ghost" href="#books">See the series</a>
+                    </div>
+                </div>
+
+                @if (($printBooks ?? collect())->isNotEmpty())
+                    <div class="print-cta__stage" aria-label="Benny print books" data-reveal="fade-left" style="--reveal-delay: 0.12s">
+                        <div class="print-cta__glow" aria-hidden="true"></div>
+                        <div class="print-cta__covers">
+                            @foreach ($printBooks as $index => $book)
+                                <a
+                                    class="print-cta__cover print-cta__cover--{{ $index + 1 }}"
+                                    href="{{ route('books.show', $book) }}"
+                                    style="--i: {{ $index }}"
+                                    aria-label="Order {{ $book->title }} print edition"
+                                >
+                                    <span class="print-cta__cover-frame">
+                                        <img
+                                            src="{{ $book->coverUrl() }}"
+                                            alt="{{ $book->title }}"
+                                            width="220"
+                                            height="280"
+                                            loading="lazy"
+                                        >
+                                    </span>
+                                    <span class="print-cta__meta">
+                                        @if ($book->tag)
+                                            <span class="print-cta__tag">{{ $book->tag }}</span>
+                                        @endif
+                                        <span class="print-cta__name">{{ $book->title }}</span>
+                                        <span class="print-cta__hint">Order print →</span>
+                                    </span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

@@ -44,5 +44,7 @@ class DatabaseSeeder extends Seeder
             'Meta Description'
         );
         SiteSetting::setValue('contact_email', config('mail.contact_to', 'hello@example.com'), 'email', 'general', 'Contact Email');
+
+        $this->call(ShopSeeder::class);
     }
 }

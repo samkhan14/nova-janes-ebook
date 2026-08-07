@@ -13,6 +13,7 @@
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" sizes="180x180">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <meta name="theme-color" content="#9E4901">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

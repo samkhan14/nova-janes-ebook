@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactFormMail;
+use App\Models\Product;
 use App\Models\SiteSetting;
 use App\Services\CmsContentService;
 use App\Support\CmsMedia;
@@ -19,10 +20,16 @@ class HomeController extends Controller
 
     public function index(): View
     {
+        $printBooks = Product::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get(['id', 'title', 'slug', 'cover_image', 'tag']);
+
         return view('home', [
             'home' => $this->cms->home(),
             'header' => $this->cms->header(),
             'footer' => $this->cms->footer(),
+            'printBooks' => $printBooks,
             'metaDescription' => SiteSetting::getValue(
                 'meta_description',
                 'Jane Mansons children’s books — stories about connection, friendship, and the power of love.'
@@ -30,16 +37,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function books(): View
+    public function books(): RedirectResponse
     {
-        return view('books', [
-            'header' => $this->cms->header(),
-            'footer' => $this->cms->footer(),
-            'metaDescription' => SiteSetting::getValue(
-                'meta_description',
-                'Jane Mansons children’s books — stories about connection, friendship, and the power of love.'
-            ),
-        ]);
+        return redirect()->route('books.index');
     }
 
     public function gallery(): View

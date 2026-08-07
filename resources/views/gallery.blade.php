@@ -19,6 +19,14 @@
         </section>
 
         <section class="section section--white gallery-page">
+            <audio
+                class="gallery-audio"
+                data-gallery-audio
+                src="{{ asset("frontend/assets/videos/Benny's Buddies-gallery-song.mp3") }}"
+                preload="auto"
+                loop
+                playsinline
+            ></audio>
             <div class="site-container">
                 @if (count($images))
                     <div class="gallery-masonry is-revealed" data-gallery>

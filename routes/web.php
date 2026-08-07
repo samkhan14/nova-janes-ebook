@@ -8,15 +8,31 @@ use App\Http\Controllers\Admin\SiteSettingsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/my-books', [HomeController::class, 'books'])->name('books.index');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery.index');
 Route::post('/contact', [HomeController::class, 'contact'])->name('contact.store');
 Route::get('/media/{path}', [MediaController::class, 'show'])
     ->where('path', '.*')
     ->name('media.show');
+
+/*
+| Print shop
+| My Books → book page → cart → checkout → thank you
+| Paperback + hardcover only. Ebook = Amazon link.
+*/
+Route::get('/my-books', [ShopController::class, 'books'])->name('books.index');
+Route::get('/my-books/{product:slug}', [ShopController::class, 'book'])->name('books.show');
+Route::get('/cart', [ShopController::class, 'cart'])->name('cart.index');
+Route::post('/cart', [ShopController::class, 'addToCart'])->name('cart.add');
+Route::patch('/cart/{variant}', [ShopController::class, 'updateCart'])->name('cart.update');
+Route::delete('/cart/{variant}', [ShopController::class, 'removeFromCart'])->name('cart.destroy');
+Route::get('/checkout', [ShopController::class, 'checkout'])->name('checkout.create');
+Route::post('/checkout/paypal/create', [ShopController::class, 'createPaypalOrder'])->name('checkout.paypal.create');
+Route::post('/checkout/paypal/capture', [ShopController::class, 'capturePaypalOrder'])->name('checkout.paypal.capture');
+Route::get('/checkout/success/{order:order_number}', [ShopController::class, 'thankYou'])->name('checkout.success');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
