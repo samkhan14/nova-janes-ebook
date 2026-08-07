@@ -2666,9 +2666,6 @@ body.is-gallery-lightbox-open {
    Apni nayi mobile / tablet CSS yahan paste karo.
    ========================================================= */
 
-/* MOBILE — phones only (< 768px)
-   Paste line: is block ke andar, closing `}` se pehle
-*/
 @media (max-width: 767.98px) {
     .hero {
         min-height: 100svh;
@@ -2760,9 +2757,6 @@ body.is-gallery-lightbox-open {
     }
 }
 
-/* TABLET — tablets only (768px – 991px)
-   Paste line: is block ke andar, closing `}` se pehle
-*/
 @media (min-width: 768px) and (max-width: 991.98px) {
     .hero__social {
         bottom: 4.5%;
