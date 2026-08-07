@@ -1427,9 +1427,32 @@ section#contact {
 
 .testimonial-card__quote {
     color: var(--color-ink);
-    margin: 0 0 var(--space-4);
+    margin: 0 0 var(--space-3);
     font-size: 16px;
     line-height: 1.55;
+}
+
+.testimonial-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem;
+    list-style: none;
+    margin: 0 0 var(--space-4);
+    padding: 0;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.testimonial-card__links a {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-eyebrow, #d67616);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.testimonial-card__links a:hover {
+    color: var(--color-ink);
 }
 
 .testimonial-card__stars {
@@ -1477,8 +1500,18 @@ section#contact {
     font-family: var(--font-display);
     font-size: 50px;
     font-weight: 700;
-    margin: 0 0 var(--space-6);
+    margin: 0 0 0.55rem;
     text-transform: uppercase;
+    text-align: left;
+}
+
+.contact__subtitle {
+    margin: 0 0 var(--space-6);
+    max-width: 36ch;
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-weight: 600;
+    line-height: 1.45;
+    color: #fff;
     text-align: left;
 }
 
@@ -2468,6 +2501,12 @@ body.is-gallery-lightbox-open {
     .retail__content,
     .contact__content {
         text-align: center;
+    }
+
+    .contact__title,
+    .contact__subtitle {
+        text-align: center;
+        margin-inline: auto;
     }
 
     .hero__actions,

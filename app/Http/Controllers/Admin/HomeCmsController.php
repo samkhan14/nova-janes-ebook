@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\CmsContentService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,15 +20,15 @@ class HomeCmsController extends Controller
         ]);
     }
 
-    public function update(Request $request): RedirectResponse
+    public function update(Request $request): JsonResponse|RedirectResponse
     {
         $files = $request->allFiles();
 
-        // Nested file inputs (testimonials[items][N][avatar]) are more reliable via file()
+        // Nested avatar uploads: testimonials[items][N][avatar_upload]
         foreach ($request->input('testimonials.items', []) as $index => $item) {
-            $avatar = $request->file("testimonials.items.$index.avatar");
+            $avatar = $request->file("testimonials.items.$index.avatar_upload");
             if ($avatar) {
-                $files['testimonials']['items'][$index]['avatar'] = $avatar;
+                $files['testimonials']['items'][$index]['avatar_upload'] = $avatar;
             }
         }
 
@@ -35,6 +36,13 @@ class HomeCmsController extends Controller
             $request->except(['_token', '_method']),
             $files
         );
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Home page content updated successfully.',
+            ]);
+        }
 
         return back()->with('status', 'Home page content updated successfully.');
     }

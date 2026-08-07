@@ -13,10 +13,18 @@
     $contact = $home['contact'];
 @endphp
 
-<form method="POST" action="{{ route('admin.cms.home.update') }}" enctype="multipart/form-data" class="space-y-8">
+<form
+    method="POST"
+    action="{{ route('admin.cms.home.update') }}"
+    enctype="multipart/form-data"
+    class="space-y-8"
+    data-ajax-form
+    data-ajax-success="Home page content updated successfully."
+>
     @csrf
     @method('PUT')
 
+    <p class="rounded-md border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800" data-ajax-status hidden></p>
     {{-- Hero --}}
     <section class="rounded-lg bg-white shadow-sm border border-gray-200 p-6 space-y-4">
         <h2 class="text-lg font-semibold text-gray-900">Hero</h2>
@@ -225,13 +233,60 @@
         </div>
     </section>
 
-    {{-- Testimonials --}}
-    <section class="rounded-lg bg-white shadow-sm border border-gray-200 p-6 space-y-4">
-        <h2 class="text-lg font-semibold text-gray-900">Testimonials</h2>
+    {{-- Testimonials / Reviews --}}
+    @php
+        $reviewItems = collect(old('testimonials.items', $testimonials['items'] ?? []))->map(function ($item) {
+            $avatar = $item['avatar'] ?? '';
+
+            return [
+                'name' => $item['name'] ?? '',
+                'headline' => $item['headline'] ?? '',
+                'quote' => $item['quote'] ?? '',
+                'avatar' => $avatar,
+                'preview' => $avatar ? (\App\Support\CmsMedia::url($avatar) ?? '') : '',
+                'website_url' => $item['website_url'] ?? '',
+                'facebook_url' => $item['facebook_url'] ?? '',
+                'instagram_url' => $item['instagram_url'] ?? '',
+                'threads_url' => $item['threads_url'] ?? '',
+                'linktree_url' => $item['linktree_url'] ?? '',
+            ];
+        })->values()->all();
+
+        if ($reviewItems === []) {
+            $reviewItems = [[
+                'name' => '',
+                'headline' => '',
+                'quote' => '',
+                'avatar' => '',
+                'preview' => '',
+                'website_url' => '',
+                'facebook_url' => '',
+                'instagram_url' => '',
+                'threads_url' => '',
+                'linktree_url' => '',
+            ]];
+        }
+    @endphp
+    <section
+        class="rounded-lg bg-white shadow-sm border border-gray-200 p-6 space-y-4"
+        x-data="{ items: {{ \Illuminate\Support\Js::from($reviewItems) }} }"
+    >
+        <div class="flex items-center justify-between gap-3">
+            <h2 class="text-lg font-semibold text-gray-900">Reviews / Testimonials</h2>
+            <button
+                type="button"
+                class="text-sm font-medium text-indigo-600 hover:text-indigo-800"
+                @click="items.push({ name: '', headline: '', quote: '', avatar: '', preview: '', website_url: '', facebook_url: '', instagram_url: '', threads_url: '', linktree_url: '' })"
+            >
+                + Add review
+            </button>
+        </div>
+
         <div>
-            <x-input-label value="Title" />
+            <x-input-label value="Section Title" />
             <x-text-input name="testimonials[title]" class="mt-1 block w-full" :value="old('testimonials.title', $testimonials['title'] ?? '')" />
         </div>
+
         <div class="grid gap-4 md:grid-cols-2">
             <div>
                 <x-input-label value="Video" />
@@ -261,32 +316,116 @@
             </div>
         </div>
 
-        @foreach (($testimonials['items'] ?? []) as $index => $item)
+        <template x-for="(item, index) in items" :key="index">
             <div class="rounded-md border border-gray-200 p-4 space-y-3">
-                <h3 class="font-medium text-gray-800">Testimonial {{ $index + 1 }}</h3>
-                <div class="grid gap-4 md:grid-cols-2">
-                    <x-text-input name="testimonials[items][{{ $index }}][name]" class="block w-full" :value="old('testimonials.items.'.$index.'.name', $item['name'] ?? '')" placeholder="Name" />
-                    <x-text-input name="testimonials[items][{{ $index }}][headline]" class="block w-full" :value="old('testimonials.items.'.$index.'.headline', $item['headline'] ?? '')" placeholder="Headline" />
+                <div class="flex items-center justify-between gap-3">
+                    <h3 class="font-medium text-gray-800" x-text="'Review ' + (index + 1)"></h3>
+                    <button
+                        type="button"
+                        class="text-sm text-red-600 hover:text-red-800"
+                        @click="items.splice(index, 1)"
+                        x-show="items.length > 1"
+                    >
+                        Remove
+                    </button>
                 </div>
-                <textarea name="testimonials[items][{{ $index }}][quote]" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Quote">{{ old('testimonials.items.'.$index.'.quote', $item['quote'] ?? '') }}</textarea>
-                @if (!empty($item['avatar']))
-                    @php
-                        $adminAvatar = $item['avatar'];
-                        if (
-                            \Illuminate\Support\Str::startsWith($adminAvatar, 'cms/')
-                            && ! \Illuminate\Support\Facades\Storage::disk('public')->exists($adminAvatar)
-                        ) {
-                            $adminName = \Illuminate\Support\Str::lower($item['name'] ?? '');
-                            $adminAvatar = str_contains($adminName, 'laurie') || str_contains($adminName, 'laury')
-                                ? 'frontend/assets/images/review-img1.png'
-                                : $adminAvatar;
-                        }
-                    @endphp
-                    <img src="{{ \App\Support\CmsMedia::url($adminAvatar) }}" alt="" class="h-12 w-12 rounded-full object-cover">
-                @endif
-                <input type="file" name="testimonials[items][{{ $index }}][avatar]" accept="image/*" class="block w-full text-sm">
+
+                <div class="grid gap-4 md:grid-cols-2">
+                    <input
+                        type="text"
+                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        :name="`testimonials[items][${index}][name]`"
+                        x-model="item.name"
+                        placeholder="Name"
+                    >
+                    <input
+                        type="text"
+                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        :name="`testimonials[items][${index}][headline]`"
+                        x-model="item.headline"
+                        placeholder="Headline"
+                    >
+                </div>
+
+                <textarea
+                    rows="3"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    :name="`testimonials[items][${index}][quote]`"
+                    x-model="item.quote"
+                    placeholder="Review text"
+                ></textarea>
+
+                <div class="grid gap-4 md:grid-cols-2">
+                    <div>
+                        <x-input-label value="Website URL (optional)" />
+                        <input
+                            type="url"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            :name="`testimonials[items][${index}][website_url]`"
+                            x-model="item.website_url"
+                            placeholder="https://..."
+                        >
+                    </div>
+                    <div>
+                        <x-input-label value="Facebook URL (optional)" />
+                        <input
+                            type="url"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            :name="`testimonials[items][${index}][facebook_url]`"
+                            x-model="item.facebook_url"
+                            placeholder="https://facebook.com/..."
+                        >
+                    </div>
+                    <div>
+                        <x-input-label value="Instagram URL (optional)" />
+                        <input
+                            type="url"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            :name="`testimonials[items][${index}][instagram_url]`"
+                            x-model="item.instagram_url"
+                            placeholder="https://instagram.com/..."
+                        >
+                    </div>
+                    <div>
+                        <x-input-label value="Threads URL (optional)" />
+                        <input
+                            type="url"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            :name="`testimonials[items][${index}][threads_url]`"
+                            x-model="item.threads_url"
+                            placeholder="https://threads.net/..."
+                        >
+                    </div>
+                    <div>
+                        <x-input-label value="Linktree URL (optional)" />
+                        <input
+                            type="url"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            :name="`testimonials[items][${index}][linktree_url]`"
+                            x-model="item.linktree_url"
+                            placeholder="https://linktr.ee/..."
+                        >
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <template x-if="item.preview">
+                        <img :src="item.preview" alt="" class="h-12 w-12 rounded-full object-cover border border-gray-200">
+                    </template>
+                    <div class="flex-1">
+                        <input type="hidden" :name="`testimonials[items][${index}][avatar]`" :value="item.avatar">
+                        <x-input-label value="Avatar photo" />
+                        <input
+                            type="file"
+                            :name="`testimonials[items][${index}][avatar_upload]`"
+                            accept="image/*"
+                            class="mt-1 block w-full text-sm"
+                            @change="if ($event.target.files[0]) { item.preview = URL.createObjectURL($event.target.files[0]) }"
+                        >
+                    </div>
+                </div>
             </div>
-        @endforeach
+        </template>
     </section>
 
     {{-- Contact --}}
@@ -295,6 +434,10 @@
         <div>
             <x-input-label value="Title" />
             <x-text-input name="contact[title]" class="mt-1 block w-full" :value="old('contact.title', $contact['title'] ?? '')" />
+        </div>
+        <div>
+            <x-input-label value="Subtitle" />
+            <x-text-input name="contact[subtitle]" class="mt-1 block w-full" :value="old('contact.subtitle', $contact['subtitle'] ?? '')" />
         </div>
         <div class="grid gap-4 md:grid-cols-2">
             <div>

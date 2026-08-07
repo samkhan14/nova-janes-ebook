@@ -113,14 +113,29 @@ class CmsContentService
         $testimonialsCurrent = CmsSection::getContent('home', 'testimonials', $this->defaultTestimonials());
         $items = [];
         foreach ($input['testimonials']['items'] ?? [] as $index => $item) {
-            $current = $testimonialsCurrent['items'][$index] ?? [];
+            $name = trim((string) ($item['name'] ?? ''));
+            $headline = trim((string) ($item['headline'] ?? ''));
+            $quote = trim((string) ($item['quote'] ?? ''));
+            $upload = $files['testimonials']['items'][$index]['avatar_upload'] ?? null;
+
+            // Skip blank rows (unless a new photo was uploaded)
+            if ($name === '' && $headline === '' && $quote === '' && ! $upload) {
+                continue;
+            }
+
             $items[] = [
-                'name' => $item['name'] ?? '',
-                'headline' => $item['headline'] ?? '',
-                'quote' => $item['quote'] ?? '',
+                'name' => $name,
+                'headline' => $headline,
+                'quote' => $quote,
+                'website_url' => trim((string) ($item['website_url'] ?? '')),
+                'facebook_url' => trim((string) ($item['facebook_url'] ?? '')),
+                'instagram_url' => trim((string) ($item['instagram_url'] ?? '')),
+                'threads_url' => trim((string) ($item['threads_url'] ?? '')),
+                'linktree_url' => trim((string) ($item['linktree_url'] ?? '')),
+                // Keep current avatar path from the hidden field when no new upload
                 'avatar' => CmsMedia::storeOrKeep(
-                    $files['testimonials']['items'][$index]['avatar'] ?? null,
-                    $current['avatar'] ?? null,
+                    $upload,
+                    $item['avatar'] ?? null,
                     'cms/testimonials'
                 ),
             ];
@@ -137,6 +152,7 @@ class CmsContentService
         $contactCurrent = CmsSection::getContent('home', 'contact', $this->defaultContact());
         CmsSection::putContent('home', 'contact', [
             'title' => $input['contact']['title'] ?? '',
+            'subtitle' => $input['contact']['subtitle'] ?? '',
             'image' => CmsMedia::storeOrKeep($files['contact']['image'] ?? null, $contactCurrent['image'] ?? null, 'cms/contact'),
             'button_label' => $input['contact']['button_label'] ?? '',
             'button_href' => $input['contact']['button_href'] ?? '',
@@ -383,6 +399,7 @@ class CmsContentService
     {
         return [
             'title' => "Benny's Buddies",
+            'subtitle' => 'Have a question, booking request, or just want to say hello? Send a message below.',
             'image' => 'frontend/assets/images/Group 1171276117_result.webp',
             'button_label' => 'Order Now',
             'button_href' => '/my-books',

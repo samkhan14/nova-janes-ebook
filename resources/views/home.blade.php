@@ -282,9 +282,15 @@
                             :headline="$item['headline'] ?? ''"
                             :quote="$item['quote'] ?? ''"
                             :avatar="$avatar"
+                            :website-url="$item['website_url'] ?? null"
+                            :facebook-url="$item['facebook_url'] ?? null"
+                            :instagram-url="$item['instagram_url'] ?? null"
+                            :threads-url="$item['threads_url'] ?? null"
+                            :linktree-url="$item['linktree_url'] ?? null"
                         />
                     </div>
-                @endforeach            </div>
+                @endforeach
+            </div>
         </div>
     </section>
 
@@ -306,6 +312,7 @@
 
             <div class="contact__content" data-reveal="fade-left" style="--reveal-delay: 0.12s">
                 <h2 class="contact__title">{{ $contact['title'] ?? '' }}</h2>
+                <p class="contact__subtitle">{{ $contact['subtitle'] ?? 'Have a question, booking request, or just want to say hello? Send a message below.' }}</p>
                 <x-site.contact-form />
             </div>
         </div>
