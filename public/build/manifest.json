@@ -1,0 +1,44 @@
+{
+  "resources/css/admin.css": {
+    "file": "assets/admin-CXcr7cJC.css",
+    "name": "admin",
+    "names": [
+      "admin.css"
+    ],
+    "src": "resources/css/admin.css",
+    "isEntry": true
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-Bt5lrIvM.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "assets": [
+      "assets/frame-3-3hhHYJmD.webp",
+      "assets/her-banner-2-DRUffERR.webp"
+    ]
+  },
+  "resources/images/frame-3.webp": {
+    "file": "assets/frame-3-3hhHYJmD.webp",
+    "src": "resources/images/frame-3.webp"
+  },
+  "resources/images/her-banner-2.webp": {
+    "file": "assets/her-banner-2-DRUffERR.webp",
+    "src": "resources/images/her-banner-2.webp"
+  },
+  "resources/js/admin.js": {
+    "file": "assets/admin-CflYtBgY.js",
+    "name": "admin",
+    "src": "resources/js/admin.js",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Cdj__4Q7.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
